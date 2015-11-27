@@ -1,0 +1,31 @@
+/*!
+ eloScroll Default Stylesheet v1.0
+ (c) 2015-2016 Ivan Filho http://ivanfilho.com
+ License: LGPL
+ */
+
+.eloscroll .bar {
+    opacity: 0;
+    width: 10px;
+    background: rgba(0, 0, 0, 0.5);
+    transition: opacity 1s ease-out;
+}
+
+.eloscroll.hover .bar, .eloscroll .bar.active {
+    opacity: 1;
+    transition: opacity 0.2s ease-out;
+}
+
+.eloscroll .button {
+    background: #aaa;
+    border-radius: 5px;
+    margin: 2px;
+}
+
+.eloscroll .bar .button.hover {
+    background: #bbb;
+}
+
+.eloscroll .bar .button.active {
+    background: #aaa;
+}
