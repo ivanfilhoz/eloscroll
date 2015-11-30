@@ -79,6 +79,15 @@ var
         $bar.appendChild($button);
 
         /*
+         * Margin detection
+         */
+
+        getMargin = function() {
+            var css = document.defaultView.getComputedStyle($button, '');
+            return parseInt(css.getPropertyValue('margin-top')) + parseInt(css.getPropertyValue('margin-bottom'));
+        }
+
+        /*
          * Resizing detection
          */
         window.setInterval(function() {
@@ -88,9 +97,7 @@ var
             if (movement.enabled) {
                 var newHeight = viewHeight * $bar.clientHeight / totalHeight;
                 with ($button) {
-                    var css = document.defaultView.getComputedStyle($button, '');
-                    var cssMargin = parseInt(css.getPropertyValue('margin-top')) + parseInt(css.getPropertyValue('margin-bottom'));
-                    style.height = (newHeight - cssMargin) + 'px';
+                    style.height = (newHeight - getMargin()) + 'px';
                 }
                 $bar.style.display = 'block';
             } else {
@@ -119,7 +126,7 @@ var
             if (!movement.enabled) {
                 set(0);
             } else {
-                var maxY = $bar.clientHeight - parseInt($button.style.height);
+                var maxY = $bar.clientHeight - parseInt($button.style.height) - getMargin();
                 if (y < 0) set(0);
                 else if (y > maxY) set(maxY);
                 else set(y);
